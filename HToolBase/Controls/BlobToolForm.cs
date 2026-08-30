@@ -11,34 +11,46 @@ using System.Windows.Forms;
 
 namespace HToolBase.Controls
 {
-    public partial class BlobToolForm : Form
+    public partial class BlobToolForm : HForm
     {
-        BlobTool tool;
-        public BlobToolForm(BlobTool blobTool)
+        BlobTool blobtool;
+        public override ToolBase tool
+        {
+            get { return blobtool; }
+            set
+            {
+                blobtool = (BlobTool)value;
+                this.Text = blobtool.RootNode.Text;
+                UnBindEvent();
+                BindingEvent();
+            }
+        }
+        public BlobToolForm()
         {
             InitializeComponent();
-            tool = blobTool;
+            blobtool=new BlobTool();
             this.Load += BlobToolForm_Load;
             this.FormClosed += BlobToolForm_FormClosed;
-            tool.UpdataImage += this.run;
+            blobtool.UpdataImage += this.run;
 
 
         }
-
+        public override void BindingEvent() { blobtool.UpdataImage += this.run; }
+        public override void UnBindEvent() { blobtool.UpdataImage -= this.run; }
         private void BlobToolForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            tool.UpdataImage -= this.run;
+            blobtool.UpdataImage -= this.run;
            
         }
 
         private void BlobToolForm_Load(object sender, EventArgs e)
         {
-            this.hDisplayControl1.ShowImage(tool.InputImage);
+            this.hDisplayControl1.ShowImage(blobtool.InputImage);
         }
 
         public void run()
         {
-            this.hDisplayControl1.ShowImage(tool.InputImage);
+            this.hDisplayControl1.ShowImage(blobtool.InputImage);
         }
         
 

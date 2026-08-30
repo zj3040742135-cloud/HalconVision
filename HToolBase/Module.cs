@@ -78,6 +78,7 @@ namespace HToolBase
         {
             this.Name = "ToolModule";
             toolBlock = new ToolBlock();
+
         }
         public override void Run()
         {

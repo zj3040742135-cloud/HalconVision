@@ -21,10 +21,9 @@ namespace HToolBase.Controls
             get { return ToolBlock; }
             set { 
                 ToolBlock =(ToolBlock) value;
+                this.Text = ToolBlock.RootNode.Text;
                 UnBindEvent();
                 BindingEvent();
-                
-
             }
         }
         /// <summary>
@@ -630,6 +629,7 @@ namespace HToolBase.Controls
                 this.ToolBlock.LoadVpp(path);
                 this.ToolBlock.RootNode.Text = Text;
                 LoadExistingPortsToGridView();
+                this.toolTreeview?.ReloadData();
             }
         }
 

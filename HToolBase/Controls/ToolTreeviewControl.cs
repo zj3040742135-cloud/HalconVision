@@ -581,7 +581,7 @@ namespace HToolBase.Controls
         {
             if (e.Node.Parent != null && e.Node.Parent.Text == "工具")
             {
-                string fullClassName = this.ToolBlock.Tools[e.Node.Text].GetType() == typeof(ToolBlock) ? "HToolBase.Controls." + this.ToolBlock.Tools[e.Node.Text].Parent.RootNode.Text + "Control" : "HToolBase.Controls." + this.ToolBlock.Tools[e.Node.Text].Parent.RootNode.Text + "Form";
+                string fullClassName = this.ToolBlock.Tools[e.Node.Text].GetType() == typeof(ToolBlock) ? "HToolBase.Controls." + this.ToolBlock.Tools[e.Node.Text].Parent.RootNode.Text + "Control" : "HToolBase.Controls." + this.ToolBlock.Tools[e.Node.Text].RootNode.Tag + "Form";
                 Assembly assembly =
                      Assembly.GetExecutingAssembly();
                 Type type = assembly.GetType(fullClassName);
@@ -596,6 +596,12 @@ namespace HToolBase.Controls
                     f = (ToolBlockControl)Activator.CreateInstance(type);
                     f.tool = this.ToolBlock.Tools[e.Node.Text];
                     ((ToolBlockControl)f).toolTreeview?.ReloadData();
+                    f.Show();
+                }
+                else
+                {
+                    f = (HForm)Activator.CreateInstance(type);
+                    f.tool = this.ToolBlock.Tools[e.Node.Text];
                     f.Show();
                 }
                 //this.ToolBlock.Tools[e.Node.Text].ShowWin();

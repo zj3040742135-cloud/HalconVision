@@ -29,6 +29,7 @@ namespace HToolBase.Tools
         public BlobTool()
         {
             this.RootNode.Text = "BlobTool";
+            this.RootNode.Tag = "BlobTool";
             this.ToolName = "BlobTool";
             this.AddInput("InputImage", TypeName.IMAGE);
             this.RootNode.ImageIndex = 0;
@@ -36,8 +37,8 @@ namespace HToolBase.Tools
         }
         public override void ShowWin() 
         {
-            BlobToolForm = new BlobToolForm(this);
-            BlobToolForm.Show();
+            //BlobToolForm = new BlobToolForm(this);
+            //BlobToolForm.Show();
         }
         public override void Run()
         {
