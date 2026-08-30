@@ -48,11 +48,11 @@ namespace Hal
 
                 var projectData = new ProjectData
                 {
-                    LastActiveProcessIndex = Form1.ProcessIndex,
+                    LastActiveProcessIndex = ProcessManager.instance().ProcessIndex,
                     LastSavedTime = DateTime.Now
                 };
 
-                foreach (var kvp in Form1.Processes)
+                foreach (var kvp in ProcessManager.instance().Processes)
                 {
                     string processName = kvp.Key;
                     ProcessPanel panel = kvp.Value;
@@ -86,17 +86,17 @@ namespace Hal
         public static void LoadProject(Form1 mainForm)
         {
             // 0. 先释放现有流程的所有资源（模块、ToolBlock、连线、事件订阅）
-            foreach (var panel in Form1.Processes.Values)
+            foreach (var panel in ProcessManager.instance().Processes.Values)
             {
                 if (panel == null) continue;
                 try { panel.ClearAll(); panel.Dispose(); }
                 catch { /* 释放失败不阻断加载 */ }
             }
-            Form1.Processes.Clear();
+            ProcessManager.instance().Processes.Clear();
             if (mainForm.GetTabControl2() != null)
                 mainForm.GetTabControl2().TabPages.Clear();
-            Form1.currentProcess = null;
-            Form1.ProcessIndex = -1;
+            ProcessManager.instance().currentProcess = null;
+            ProcessManager.instance().ProcessIndex = -1;
 
             if (!File.Exists(ProductManager.ProjectConfigPath)) return;
 
@@ -129,7 +129,7 @@ namespace Hal
                 page.Controls.Add(panel);
                 mainForm.GetTabControl2().TabPages.Add(page);
                 panel.LoadFromFolder(folder);
-                Form1.Processes[item.ProcessName] = panel;
+                ProcessManager.instance().Processes[item.ProcessName] = panel;
             }
 
             // 3. 恢复最后激活的流程
@@ -138,12 +138,12 @@ namespace Hal
                 projectData.LastActiveProcessIndex < mainForm.GetTabControl2().TabPages.Count)
             {
                 mainForm.GetTabControl2().SelectedIndex = projectData.LastActiveProcessIndex;
-                Form1.ProcessIndex = projectData.LastActiveProcessIndex;
+                ProcessManager.instance().ProcessIndex = projectData.LastActiveProcessIndex;
             }
 
             // 4. 设置当前流程
-            if (Form1.Processes.Count > 0)
-                Form1.currentProcess = Form1.Processes.Values.First();
+            if (ProcessManager.instance().Processes.Count > 0)
+                ProcessManager.instance().currentProcess = ProcessManager.instance().Processes.Values.First();
         }
     }
 }

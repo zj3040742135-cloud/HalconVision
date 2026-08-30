@@ -17,9 +17,8 @@ namespace Hal
 {
     public partial class Form1 : Form
     {
-        public static Dictionary<string, ProcessPanel> Processes = new Dictionary<string, ProcessPanel>();
-        public static int ProcessIndex = -1;
-        public static ProcessPanel currentProcess;
+        //public static Dictionary<string, ProcessPanel> Processes = new Dictionary<string, ProcessPanel>();
+        //public static int ProcessIndex = -1;
         private System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
         public System.Windows.Forms.TabControl GetTabControl2() => tabControl2;
         public System.Windows.Forms.TabControl GetTabControl3() => tabControl3;
@@ -38,15 +37,15 @@ namespace Hal
             ProjectManager.LoadProject(this);
 
             // 4. 若加载不到任何流程，创建一个默认 Debug 流程
-            if (Processes.Count == 0)
+            if (ProcessManager.instance(). Processes.Count == 0)
                 CreateDefaultProcess("Debug");
 
             // 5. 默认选中第一个流程，同步当前流程指针
             if (tabControl2.TabPages.Count > 0)
             {
                 tabControl2.SelectedIndex = 0;
-                ProcessIndex = 0;
-                SetCurrentProcess(Processes.Values.FirstOrDefault());
+                ProcessManager.instance().ProcessIndex = 0;
+                SetCurrentProcess(ProcessManager.instance().Processes.Values.FirstOrDefault());
             }
 
             tabControl2.SelectedIndexChanged += tabControl2_SelectedIndexChanged;
@@ -62,7 +61,7 @@ namespace Hal
             var page = new TabPage { Text = name };
             page.Controls.Add(panel);
             tabControl2.TabPages.Add(page);
-            Processes[name] = panel;
+            ProcessManager.instance().Processes[name] = panel;
         }
 
         /// <summary>
@@ -71,7 +70,7 @@ namespace Hal
         /// </summary>
         private static void SetCurrentProcess(ProcessPanel panel)
         {
-            currentProcess = panel;
+            ProcessManager.instance().currentProcess = panel;
             if (panel != null)
                 ProductManager.CurrentProcessPanel = panel.PanelName;
         }
@@ -85,9 +84,9 @@ namespace Hal
         private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl2.SelectedIndex < 0) return;
-            ProcessIndex = tabControl2.SelectedIndex;
+            ProcessManager.instance().ProcessIndex = tabControl2.SelectedIndex;
             string name = tabControl2.SelectedTab?.Text;
-            if (!string.IsNullOrEmpty(name) && Processes.TryGetValue(name, out var panel))
+            if (!string.IsNullOrEmpty(name) && ProcessManager.instance().Processes.TryGetValue(name, out var panel))
                 SetCurrentProcess(panel);
         }
 
@@ -125,13 +124,13 @@ namespace Hal
             if (oldProduct != ProductManager.CurrentProduct)
             {
                 ProjectManager.LoadProject(this);
-                if (Processes.Count == 0)
+                if (ProcessManager.instance().Processes.Count == 0)
                     CreateDefaultProcess("Debug");
                 if (tabControl2.TabPages.Count > 0)
                 {
                     tabControl2.SelectedIndex = 0;
-                    ProcessIndex = 0;
-                    SetCurrentProcess(Processes.Values.FirstOrDefault());
+                    ProcessManager.instance(). ProcessIndex = 0;
+                    SetCurrentProcess(ProcessManager.instance().Processes.Values.FirstOrDefault());
                 }
                 UpdateTitle();
             }
@@ -151,7 +150,7 @@ namespace Hal
 
         private void Run_Click_1(object sender, EventArgs e)
         {
-            currentProcess?.Run();
+            ProcessManager.instance().currentProcess?.Run();
         }
     }
 }

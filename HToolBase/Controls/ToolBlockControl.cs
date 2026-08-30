@@ -93,7 +93,7 @@ namespace HToolBase.Controls
         }
         public override void UnBindEvent()
         {
-            
+
             RenameInputPortEvent -= toolTreeview.RenameInputPort;
             RenameOutputPortEvent -= toolTreeview.RenameOutputPort;
             ToolBlock.AddInputEvent -= ToolBlock_AddInputEvent;
@@ -103,7 +103,19 @@ namespace HToolBase.Controls
             this.tabControl1.TabPages[0].Controls.Clear();
             toolTreeview?.Dispose();
             toolTreeview = null;
-            
+
+        }
+
+        /// <summary>
+        /// 窗口关闭、窗体Dispose之前，内部工具的RootNode还挂在本窗体的树视图上且句柄存活。
+        /// 此时必须先摘除（DetachToolNodes）：工具实例被ToolBlock长期持有并跨编辑器窗口复用，
+        /// 若等窗体Dispose后节点仍挂着，节点内部会残留已销毁的原生句柄与treeView引用，
+        /// 再次打开编辑器AddNodes时抛"不能在多处添加或插入项...Parameter name: node"异常
+        /// </summary>
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            toolTreeview?.DetachToolNodes();
+            base.OnFormClosed(e);
         }
         /// <summary>
         /// 窗体加载完成后，将已存在的ToolBlock输入/输出端口填充到DataGridView

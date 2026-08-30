@@ -1413,8 +1413,14 @@ namespace HToolBase.Controls
         public bool AddNodes(ToolBase tool)
         {
             try {
+                if (tool?.RootNode == null) return false;
                 string NodesName = "工具";
                 TreeNode rootNode = treeView1.Nodes.Cast<TreeNode>().FirstOrDefault(n => n.Text == NodesName);
+                if (rootNode == null) return false;
+                // 同一工具实例跨编辑器窗口复用，RootNode若仍挂在当前树（如重复添加）需先摘除；
+                // 跨窗口的残留由窗口关闭时DetachToolNodes在树存活状态下清理（Dispose后Remove无法
+                // 清除节点内部残留的原生句柄与treeView引用，Add会抛"不能在多处添加或插入项"）
+                tool.RootNode.Remove();
                 rootNode.Nodes.Add(tool.RootNode);
                 rootNode.ExpandAll();
                 return true;
@@ -1423,7 +1429,29 @@ namespace HToolBase.Controls
                 {
                 return false;
             }
-            
+
+        }
+
+        /// <summary>
+        /// 将所有内部工具的RootNode从本树视图摘除（供编辑器窗体关闭时调用）。
+        /// 必须在TreeView句柄仍存活时调用：此时Remove才会同步销毁原生项并彻底清除节点内部的
+        /// handle与treeView引用，工具节点之后才能被重新Add到新打开的编辑器树中；
+        /// 若等窗体Dispose后节点仍挂着，该残留状态无法通过Remove清除。
+        /// </summary>
+        public void DetachToolNodes()
+        {
+            try {
+                TreeNode rootNode = treeView1.Nodes.Cast<TreeNode>().FirstOrDefault(n => n.Text == "工具");
+                if (rootNode == null) return;
+                foreach (TreeNode node in rootNode.Nodes.Cast<TreeNode>().ToList())
+                {
+                    node.Remove();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DetachToolNodes失败：" + ex.Message);
+            }
         }
 
         /// <summary>
