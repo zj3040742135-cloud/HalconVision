@@ -1,0 +1,15 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="../HAttribute/HAttribute.csproj" Id="fd3f206b-fb55-40e7-b2e5-0f3661be534d">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="../HToolBase/HToolBase.csproj" Id="cf7f2f8c-9e72-435e-a42b-a5d0e60140ed">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="Hal.csproj" Id="175db10e-7de3-4927-88c6-95300221a914">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+</Solution>
