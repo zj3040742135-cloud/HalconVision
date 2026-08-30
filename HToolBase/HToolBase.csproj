@@ -125,7 +125,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Module.cs" />
-    <Compile Include="ProcessManager.cs" />
     <Compile Include="ProcessPanel.cs" />
     <Compile Include="ProductManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
