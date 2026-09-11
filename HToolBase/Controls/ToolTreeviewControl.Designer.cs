@@ -1,4 +1,4 @@
-﻿namespace HToolBase.Controls
+namespace HToolBase.Controls
 {
     partial class ToolTreeviewControl
     {
@@ -13,9 +13,20 @@
         /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                // 注意：本控件的components从未实例化（恒为null），事件退订不能放在
+                // components判空分支内，否则窗体关闭后已释放的旧ToolTreeviewControl
+                // 仍订阅ToolBlock.Tools.ToolAdded等事件；再次打开窗口添加工具时，
+                // 旧处理器在已释放控件上抛ObjectDisposedException，中断事件多播链，
+                // 新窗口的处理器无法执行，表现为ToolBlock内部已添加工具但树视图不显示。
+                if (ToolBlock != null)
+                {
+                    ToolBlock.Tools.ToolAdded -= Tools_ToolAdded;
+                    ToolBlock.AddInputEvent -= OnAddInputEvent;
+                    ToolBlock.AddOutputEvent -= OnAddOutputEvent;
+                }
+                components?.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -17,6 +17,8 @@ namespace HToolBase.Tools
     {
         HObject r;
         private HObject _outputImage = new HObject();
+        public event Action UpdataImage;
+        public string ImageStr;
         #region//工具属性
         [FieldInfoTagAttribute("OutputImage", typeof(HObject), "Output")]
         public HObject OutputImage
@@ -59,6 +61,7 @@ namespace HToolBase.Tools
         public ImageSourceTool()
         {
             this.RootNode.Text = "ImageSourceTool";
+            this.RootNode.Tag = "ImageSourceTool";
             this.ToolName= "ImageSourceTool";
             this.AddOutput("OutputImage", TypeName.IMAGE);
             //this.AddInput("Debug", TypeName.SINGAL);
@@ -77,10 +80,11 @@ namespace HToolBase.Tools
                 HOperatorSet.GenRectangle1(out r, 200, 200, 800, 800);
                 AddDisplayRegion("FoundRegion", r, color: "green", draw: "margin", lineWidth: 1.5);
                 //this.Outputs["IsRunSuccess"].Value = this.Inputs["IsRunSuccess"].Value;
-                HOperatorSet.ReadImage(out image, "C:\\Users\\Administrator\\Desktop\\pic\\图片丢失\\1\\A面大图\\EA0920-14684976-20260228153544-A面-OK-原图.jpg");
+                HOperatorSet.ReadImage(out image, ImageStr);
                 // setter 深拷贝，端口独占副本；image 由 finally 释放
                 OutputImage = image;
                 UpdateDisplayData("FoundRegion", r);
+                UpdataImage?.Invoke();
                 IsRunSuccess = true;
             }
             catch

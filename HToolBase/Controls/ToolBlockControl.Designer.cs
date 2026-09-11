@@ -32,14 +32,12 @@
                         output.ValueChanged -= OutputPort_ValueChanged;
                     }
 
-                    // 从父控件中移除toolTreeview，防止base.Dispose递归销毁它。
-                    // toolTreeview由ToolBlock管理生命周期，不应随窗体一起销毁，
-                    // 否则下次打开窗体访问toolTreeview时会抛ObjectDisposedException。
-                    if (toolTreeview != null && toolTreeview.Parent != null)
-                    {
+                    toolTreeview?.Dispose();
+                    //if (toolTreeview != null && toolTreeview.Parent != null)
+                    //{
                        
-                        toolTreeview.Parent.Controls.Remove(toolTreeview); toolTreeview?.Dispose();
-                    }
+                    //    toolTreeview.Parent.Controls.Remove(toolTreeview); 
+                    //}
                 }
                 if (components != null)
                 {

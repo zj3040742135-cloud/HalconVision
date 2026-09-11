@@ -1,4 +1,4 @@
-﻿using HToolBase.Tools;
+﻿﻿﻿﻿﻿using HToolBase.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -659,13 +659,27 @@ namespace HToolBase.Controls
 
         private void Tools_ToolAdded(object sender, ToolAddedEventArgs e)
         {
-            if (this.treeView1.InvokeRequired)
+            // 已释放/未挂载的旧控件实例可能因退订不及时仍在订阅链上，直接忽略；
+            // 整体try/catch隔离：单个订阅者异常不能中断多播委托链，否则排在后面的
+            // 新窗口订阅者收不到事件（表现为ToolBlock内部已添加工具但树视图不显示）
+            if (this.IsDisposed || treeView1 == null || treeView1.IsDisposed) return;
+            try
             {
-                this.treeView1.BeginInvoke(new Action(() => AddNodes(e.Tool)));
+                if (this.treeView1.InvokeRequired)
+                {
+                    this.treeView1.BeginInvoke(new Action(() =>
+                    {
+                        if (!this.IsDisposed && !treeView1.IsDisposed) AddNodes(e.Tool);
+                    }));
+                }
+                else
+                {
+                    AddNodes(e.Tool);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                AddNodes(e.Tool);
+                Console.WriteLine("Tools_ToolAdded处理失败：" + ex.Message);
             }
         }
 

@@ -89,6 +89,12 @@
     <Compile Include="Controls\HDisplayControl.Designer.cs">
       <DependentUpon>HDisplayControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ImageSourceToolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageSourceToolForm.Designer.cs">
+      <DependentUpon>ImageSourceToolForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TerminalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\HDisplayControl.resx">
       <DependentUpon>HDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageSourceToolForm.resx">
+      <DependentUpon>ImageSourceToolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TerminalForm.resx">
       <DependentUpon>TerminalForm.cs</DependentUpon>
