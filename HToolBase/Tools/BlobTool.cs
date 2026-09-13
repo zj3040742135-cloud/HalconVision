@@ -24,7 +24,7 @@ namespace HToolBase.Tools
             }
         }
         #endregion
-        BlobToolForm BlobToolForm;
+        
         public event Action UpdataImage;
         public BlobTool()
         {
@@ -42,6 +42,17 @@ namespace HToolBase.Tools
         }
         public override void Run()
         {
+            try
+            {
+                if(InputImage.IsInitialized())
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
             base.Run();
             IsRunSuccess = true;
             UpdataImage?.Invoke();

@@ -6,6 +6,7 @@
   <Project Path="../HAttribute/HAttribute.csproj" Id="fd3f206b-fb55-40e7-b2e5-0f3661be534d">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
+  <Project Path="../HCore/HCore.csproj" Id="fd1f44e2-ee0e-4374-86ec-ce2a771686d3" />
   <Project Path="../HToolBase/HToolBase.csproj" Id="cf7f2f8c-9e72-435e-a42b-a5d0e60140ed">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
