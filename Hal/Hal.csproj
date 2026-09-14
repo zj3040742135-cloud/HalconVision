@@ -101,6 +101,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HDesigner\HDesigner.csproj">
+      <Project>{399ee1fd-4fd0-4235-98c1-473a9cb7213c}</Project>
+      <Name>HDesigner</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HToolBase\HToolBase.csproj">
       <Project>{cf7f2f8c-9e72-435e-a42b-a5d0e60140ed}</Project>
       <Name>HToolBase</Name>

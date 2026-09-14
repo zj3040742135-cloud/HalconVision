@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-
+using HDesigner;
 namespace Hal
 {
     public partial class Form1 : Form
@@ -151,6 +151,43 @@ namespace Hal
         private void Run_Click_1(object sender, EventArgs e)
         {
             ProcessManager.instance().currentProcess?.Run();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DesignerForm form = new DesignerForm();
+            form.ShowDialog(this);
+        }
+
+        /// <summary>生成新窗口：加载当前产品目录下的界面设计（DesignerForm关闭时自动保存）
+        /// 生成运行窗口（事件绑定生效），切换时关闭Form1；运行窗口底部按钮可切回Form1</summary>
+        private void GenerateWindowBtn_Click(object sender, EventArgs e)
+        {
+            string designFile = Path.Combine(ProductManager.CurrentProductPath, "DesignerLayout.xml");
+            if (!File.Exists(designFile))
+            {
+                MessageBox.Show("当前产品目录下没有界面设计文件（DesignerLayout.xml）。\n" +
+                    "请先在界面设计器中设计界面（关闭设计器时会自动保存）。",
+                    "生成新窗口", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                DesignDocument doc = DesignDocument.Load(designFile);
+                if (doc.Controls == null || doc.Controls.Count == 0)
+                {
+                    MessageBox.Show("界面设计为空，请先在界面设计器中设计界面。", "生成新窗口",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                RuntimeForm rt = new RuntimeForm(doc);
+                AppSession.SwitchMain(rt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("生成运行窗口失败：" + ex.Message, "生成新窗口",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

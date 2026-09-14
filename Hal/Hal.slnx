@@ -7,6 +7,7 @@
     <Platform Solution="*|x64" Project="x64" />
   </Project>
   <Project Path="../HCore/HCore.csproj" Id="fd1f44e2-ee0e-4374-86ec-ce2a771686d3" />
+  <Project Path="../HDesigner/HDesigner.csproj" Id="399ee1fd-4fd0-4235-98c1-473a9cb7213c" />
   <Project Path="../HToolBase/HToolBase.csproj" Id="cf7f2f8c-9e72-435e-a42b-a5d0e60140ed">
     <Platform Solution="*|x64" Project="x64" />
   </Project>

@@ -19,6 +19,9 @@ namespace HToolBase.Tools
         private HObject _outputImage = new HObject();
         public event Action UpdataImage;
         public string ImageStr;
+        /// <summary>多选图片列表：非空时每运行一次依次读取下一张（到末尾后循环回第一张）</summary>
+        public List<string> ImageList = new List<string>();
+        private int _imageIndex = -1;
         #region//工具属性
         [FieldInfoTagAttribute("OutputImage", typeof(HObject), "Output")]
         public HObject OutputImage
@@ -71,6 +74,19 @@ namespace HToolBase.Tools
             //HOperatorSet.GenRectangle1(out r, 200, 200, 800, 800);
             //AddDisplayRegion("FoundRegion", r, color: "green", draw: "margin", lineWidth: 1.5);
         }
+        /// <summary>取本次运行要读取的图片路径：
+        /// 多选列表非空时依次推进索引（循环），否则使用单张ImageStr</summary>
+        private string GetNextImagePath()
+        {
+            if (ImageList != null && ImageList.Count > 0)
+            {
+                _imageIndex = (_imageIndex + 1) % ImageList.Count;
+                ImageStr = ImageList[_imageIndex]; // 同步单张路径字段，保持兼容
+                return ImageStr;
+            }
+            return ImageStr;
+        }
+
         public override void Run()
         {
             HObject image = null;
@@ -80,7 +96,7 @@ namespace HToolBase.Tools
                 HOperatorSet.GenRectangle1(out r, 200, 200, 800, 800);
                 AddDisplayRegion("FoundRegion", r, color: "green", draw: "margin", lineWidth: 1.5);
                 //this.Outputs["IsRunSuccess"].Value = this.Inputs["IsRunSuccess"].Value;
-                HOperatorSet.ReadImage(out image, ImageStr);
+                HOperatorSet.ReadImage(out image, GetNextImagePath());
                 // setter 深拷贝，端口独占副本；image 由 finally 释放
                 OutputImage = image;
                 UpdateDisplayData("FoundRegion", r);

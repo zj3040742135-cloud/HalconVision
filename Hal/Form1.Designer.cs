@@ -45,10 +45,12 @@ namespace Hal
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.GenerateWindowBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
             this.Run = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -67,9 +69,10 @@ namespace Hal
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1255, 71);
+            this.tabControl1.Size = new System.Drawing.Size(1673, 89);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -77,10 +80,11 @@ namespace Hal
             this.tabPage1.Controls.Add(this.User);
             this.tabPage1.Controls.Add(this.Logout);
             this.tabPage1.Controls.Add(this.Login);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1247, 45);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(1665, 60);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "开始";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -88,18 +92,20 @@ namespace Hal
             // User
             // 
             this.User.Image = ((System.Drawing.Image)(resources.GetObject("User.Image")));
-            this.User.Location = new System.Drawing.Point(99, 3);
+            this.User.Location = new System.Drawing.Point(132, 4);
+            this.User.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.User.Name = "User";
-            this.User.Size = new System.Drawing.Size(42, 40);
+            this.User.Size = new System.Drawing.Size(56, 50);
             this.User.TabIndex = 0;
             this.User.UseVisualStyleBackColor = true;
             // 
             // Logout
             // 
             this.Logout.Image = ((System.Drawing.Image)(resources.GetObject("Logout.Image")));
-            this.Logout.Location = new System.Drawing.Point(51, 3);
+            this.Logout.Location = new System.Drawing.Point(68, 4);
+            this.Logout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Logout.Name = "Logout";
-            this.Logout.Size = new System.Drawing.Size(42, 40);
+            this.Logout.Size = new System.Drawing.Size(56, 50);
             this.Logout.TabIndex = 0;
             this.Logout.UseVisualStyleBackColor = true;
             // 
@@ -109,21 +115,24 @@ namespace Hal
             this.Login.Font = new System.Drawing.Font("宋体", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Login.ForeColor = System.Drawing.SystemColors.Control;
             this.Login.Image = ((System.Drawing.Image)(resources.GetObject("Login.Image")));
-            this.Login.Location = new System.Drawing.Point(3, 3);
+            this.Login.Location = new System.Drawing.Point(4, 4);
+            this.Login.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(42, 40);
+            this.Login.Size = new System.Drawing.Size(56, 50);
             this.Login.TabIndex = 0;
             this.Login.Text = "用户登录";
             this.Login.UseVisualStyleBackColor = false;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.SetSystem);
             this.tabPage2.Controls.Add(this.DisplayManger);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1247, 45);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(1665, 60);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "设置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -131,9 +140,10 @@ namespace Hal
             // SetSystem
             // 
             this.SetSystem.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SetSystem.Location = new System.Drawing.Point(76, 3);
+            this.SetSystem.Location = new System.Drawing.Point(101, 4);
+            this.SetSystem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SetSystem.Name = "SetSystem";
-            this.SetSystem.Size = new System.Drawing.Size(73, 39);
+            this.SetSystem.Size = new System.Drawing.Size(97, 52);
             this.SetSystem.TabIndex = 1;
             this.SetSystem.Text = "系统设置";
             this.SetSystem.UseVisualStyleBackColor = true;
@@ -141,9 +151,10 @@ namespace Hal
             // DisplayManger
             // 
             this.DisplayManger.Dock = System.Windows.Forms.DockStyle.Left;
-            this.DisplayManger.Location = new System.Drawing.Point(3, 3);
+            this.DisplayManger.Location = new System.Drawing.Point(4, 4);
+            this.DisplayManger.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DisplayManger.Name = "DisplayManger";
-            this.DisplayManger.Size = new System.Drawing.Size(73, 39);
+            this.DisplayManger.Size = new System.Drawing.Size(97, 52);
             this.DisplayManger.TabIndex = 0;
             this.DisplayManger.Text = "显示管理";
             this.DisplayManger.UseVisualStyleBackColor = true;
@@ -152,9 +163,10 @@ namespace Hal
             // 
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.ProjectManger);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1247, 45);
+            this.tabPage3.Size = new System.Drawing.Size(1665, 60);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "产品";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -163,9 +175,10 @@ namespace Hal
             // 
             this.button3.BackColor = System.Drawing.Color.LightGray;
             this.button3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button3.Location = new System.Drawing.Point(61, 0);
+            this.button3.Location = new System.Drawing.Point(81, 0);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(61, 45);
+            this.button3.Size = new System.Drawing.Size(81, 60);
             this.button3.TabIndex = 1;
             this.button3.Text = "保存";
             this.button3.UseVisualStyleBackColor = false;
@@ -176,8 +189,9 @@ namespace Hal
             this.ProjectManger.BackColor = System.Drawing.Color.LightGray;
             this.ProjectManger.Dock = System.Windows.Forms.DockStyle.Left;
             this.ProjectManger.Location = new System.Drawing.Point(0, 0);
+            this.ProjectManger.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ProjectManger.Name = "ProjectManger";
-            this.ProjectManger.Size = new System.Drawing.Size(61, 45);
+            this.ProjectManger.Size = new System.Drawing.Size(81, 60);
             this.ProjectManger.TabIndex = 0;
             this.ProjectManger.Text = "产品管理";
             this.ProjectManger.UseVisualStyleBackColor = false;
@@ -186,7 +200,8 @@ namespace Hal
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 71);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 89);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -198,35 +213,39 @@ namespace Hal
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl2);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
-            this.splitContainer1.Size = new System.Drawing.Size(1255, 794);
-            this.splitContainer1.SplitterDistance = 524;
+            this.splitContainer1.Size = new System.Drawing.Size(1673, 992);
+            this.splitContainer1.SplitterDistance = 698;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 2;
             // 
             // tabControl3
             // 
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(0, 0);
+            this.tabControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(524, 667);
+            this.tabControl3.Size = new System.Drawing.Size(698, 834);
             this.tabControl3.TabIndex = 3;
             // 
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 667);
+            this.textBox1.Location = new System.Drawing.Point(0, 834);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(524, 127);
+            this.textBox1.Size = new System.Drawing.Size(698, 158);
             this.textBox1.TabIndex = 2;
             // 
             // tabControl2
             // 
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(0, 30);
+            this.tabControl2.Location = new System.Drawing.Point(0, 36);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(727, 764);
+            this.tabControl2.Size = new System.Drawing.Size(970, 956);
             this.tabControl2.TabIndex = 0;
             // 
             // panel3
@@ -237,26 +256,30 @@ namespace Hal
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.Add);
             this.panel3.Controls.Add(this.Run);
+            this.panel3.Controls.Add(this.GenerateWindowBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(727, 30);
+            this.panel3.Size = new System.Drawing.Size(970, 36);
             this.panel3.TabIndex = 1;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(414, 2);
+            this.button2.Location = new System.Drawing.Point(552, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(27, 23);
+            this.button2.Size = new System.Drawing.Size(36, 29);
             this.button2.TabIndex = 2;
             this.button2.Text = "属性";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(63, 4);
+            this.button1.Location = new System.Drawing.Point(84, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 23);
+            this.button1.Size = new System.Drawing.Size(36, 29);
             this.button1.TabIndex = 1;
             this.button1.Text = "属性";
             this.button1.UseVisualStyleBackColor = true;
@@ -264,29 +287,54 @@ namespace Hal
             // Add
             // 
             this.Add.Image = ((System.Drawing.Image)(resources.GetObject("Add.Image")));
-            this.Add.Location = new System.Drawing.Point(35, 3);
+            this.Add.Location = new System.Drawing.Point(47, 4);
+            this.Add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(22, 23);
+            this.Add.Size = new System.Drawing.Size(29, 29);
             this.Add.TabIndex = 0;
             this.Add.UseVisualStyleBackColor = true;
             // 
             // Run
             // 
             this.Run.Image = ((System.Drawing.Image)(resources.GetObject("Run.Image")));
-            this.Run.Location = new System.Drawing.Point(7, 3);
+            this.Run.Location = new System.Drawing.Point(9, 4);
+            this.Run.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Run.Name = "Run";
-            this.Run.Size = new System.Drawing.Size(22, 23);
+            this.Run.Size = new System.Drawing.Size(29, 29);
             this.Run.TabIndex = 0;
             this.Run.UseVisualStyleBackColor = true;
             this.Run.Click += new System.EventHandler(this.Run_Click_1);
+            //
+            // GenerateWindowBtn（生成运行窗口：按当前产品目录下的界面设计生成）
+            //
+            this.GenerateWindowBtn.Location = new System.Drawing.Point(596, 3);
+            this.GenerateWindowBtn.Name = "GenerateWindowBtn";
+            this.GenerateWindowBtn.Size = new System.Drawing.Size(96, 29);
+            this.GenerateWindowBtn.TabIndex = 5;
+            this.GenerateWindowBtn.Text = "生成新窗口";
+            this.GenerateWindowBtn.UseVisualStyleBackColor = true;
+            this.GenerateWindowBtn.Click += new System.EventHandler(this.GenerateWindowBtn_Click);
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button4.Location = new System.Drawing.Point(198, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(97, 52);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "生产界面设置";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 865);
+            this.ClientSize = new System.Drawing.Size(1673, 1081);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
@@ -322,9 +370,11 @@ namespace Hal
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button GenerateWindowBtn;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button Run;
+        private System.Windows.Forms.Button button4;
     }
 }
 
